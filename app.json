@@ -1,13 +1,43 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/sports/sports",
+    "pages/accident/accident",
+    "pages/tips/tips"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#0094ff",
+    "navigationBarTitleText": "EE-shoes",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "主页",
+      "iconPath": "./images/index2.png",
+      "selectedIconPath": "./images/index2Tag.png"
+    },
+    {
+      "pagePath": "pages/sports/sports",
+      "text": "运动",
+      "iconPath": "./images/sports1.png",
+      "selectedIconPath": "./images/sport1Tag.png"
+    },
+    {
+      "pagePath": "pages/accident/accident",
+      "text": "意外记录",
+      "iconPath": "./images/accident.png",
+      "selectedIconPath": "./images/accidentTag.png"
+    },
+    {
+      "pagePath": "pages/tips/tips",
+      "text": "更多",
+      "iconPath": "./images/more.png",
+      "selectedIconPath": "./images/moreTag.png"
+    }
+  ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
