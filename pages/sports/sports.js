@@ -1,4 +1,5 @@
 // pages/sports/sports.js
+const utils=require("../../utils/util.js");
 Page({
 
   /**
@@ -7,8 +8,10 @@ Page({
   data: {
     
   },
-  getuserinfo: function (e){
-    console.log(e);
+  handleTime:function(){
+    let nowDate=new Date();
+    nowDate=utils.formatTime(nowDate);
+    console.log(nowDate);
   },
   /**
    * 生命周期函数--监听页面加载

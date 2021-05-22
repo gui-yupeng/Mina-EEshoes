@@ -1,3 +1,4 @@
 <!--pages/sports/sports.wxml-->
 <Tag abc="">
 </Tag>
+<view bindtap="handleTime">点击时间</view>
