@@ -36,7 +36,7 @@ Component({
 
   methods: {
     //微信提供接口，打开蓝牙适配器，异步操作
-    openBluetoothAdapter=function (){
+    openBluetoothAdapter : function (){
       wx.openBluetoothAdapter({
         success: (res) => {
           console.log('openBluetoothAdapter success', res)
@@ -55,7 +55,7 @@ Component({
       })
     },
     //开始搜索蓝牙信号
-    startBluetoothDevicesDiscovery=function (){
+    startBluetoothDevicesDiscovery:function (){
       if (this._discoveryStarted) {
         return
       }
@@ -69,7 +69,7 @@ Component({
       })
     },
     //发现蓝牙信号，监听寻找到新设备的事件，res只有一个属性，res.device（这也是一个大类）
-    onBluetoothDeviceFound=function() {
+    onBluetoothDeviceFound:function() {
       wx.onBluetoothDeviceFound((res) => {
         res.devices.forEach(device => {
           if (!device.name && !device.localName) {
@@ -92,16 +92,16 @@ Component({
       })
     },
     //停止按钮调用，直接停止搜索
-    stopBluetoothDevicesDiscovery=function () {
+    stopBluetoothDevicesDiscovery:function () {
       wx.stopBluetoothDevicesDiscovery()
     },
     //结束进程按钮调用，关闭蓝牙适配器
-    closeBluetoothAdapter() {
+    closeBluetoothAdapter: function() {
       wx.closeBluetoothAdapter()
       this._discoveryStarted = false
     },
     //点击一个设备,连接设备
-    createBLEConnection=function(e){
+    createBLEConnection:function(e){
       const ds = e.currentTarget.dataset
       const deviceId = ds.deviceId
       const name = ds.name
@@ -121,7 +121,7 @@ Component({
       this.stopBluetoothDevicesDiscovery()
     },
     //获取蓝牙设备所有服务(service)
-    getBLEDeviceServices=function(deviceId){
+    getBLEDeviceServices:function(deviceId){
       wx.getBLEDeviceServices({
         deviceId,
         success: (res) => {
@@ -129,14 +129,14 @@ Component({
             if (res.services[i].isPrimary) {
     //通过UUID获取services的Characteristics
               this.getBLEDeviceCharacteristics(deviceId, res.services[i].uuid)
-              return
+              
             }
           }
         }
       })
     },
     //获取蓝牙设备某个服务中所有特征值(characteristic)，参数均为UUID
-    getBLEDeviceCharacteristics=function(deviceId, serviceId){
+    getBLEDeviceCharacteristics:function(deviceId, serviceId){
       wx.getBLEDeviceCharacteristics({
         deviceId,
         serviceId,
@@ -150,6 +150,9 @@ Component({
                 deviceId,
                 serviceId,
                 characteristicId: item.uuid,
+                success (res) {
+                  console.log('readBLECharacteristicValue:', res)
+                }
               })
             }
             if (item.properties.write) {
@@ -197,7 +200,7 @@ Component({
       })
     },
     //发送数据
-    writeBLECharacteristicValue=function () {
+    writeBLECharacteristicValue:function () {
       // 向蓝牙设备发送一个0x00的16进制数据
       let buffer = new ArrayBuffer(1)
       let dataView = new DataView(buffer)
@@ -205,12 +208,12 @@ Component({
       dataView.setUint8(0, Math.random() * 255 | 0)
       wx.writeBLECharacteristicValue({
         deviceId: this._deviceId,
-        serviceId: this._deviceId,
+        serviceId: this._serviceId,
         characteristicId: this._characteristicId,
         value: buffer,
       })
     },
-    closeBLEConnection=function () {
+    closeBLEConnection:function () {
       wx.closeBLEConnection({
         deviceId: this.data.deviceId
       })
@@ -221,7 +224,7 @@ Component({
       })
     },
     //未调用函数
-    getBluetoothAdapterState=function() {
+    getBluetoothAdapterState:function() {
       wx.getBluetoothAdapterState({
         success: (res) => {
           console.log('getBluetoothAdapterState', res)
@@ -232,7 +235,7 @@ Component({
           }
         }
       })
-    },
+    }
 
 
 

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "Tag":"../../components/Tag/Tag"
+    "Tag" : "../../components/Tag/Tag",
+    "bluetooth" : "/components/BLE/BLE"
   }
 }
