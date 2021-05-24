@@ -7,7 +7,23 @@ function inArray(arr, key, val) {
   }
   return -1;
 }
-
+//16进制ASCII码转换成字符
+function hexCharCodeToStr(hexCharCodeStr) {
+  var trimedStr = hexCharCodeStr.trim();
+  var rawStr = trimedStr.substr(0, 2).toLowerCase() === "0x" ? trimedStr.substr(2) : trimedStr;
+  var len = rawStr.length;
+  if (len % 2 !== 0) {
+      alert("存在非法字符!");
+      return "";
+  }
+  var curCharCode;
+  var resultStr = [];
+  for (var i = 0; i < len; i = i + 2) {
+      curCharCode = parseInt(rawStr.substr(i, 2), 16);
+      resultStr.push(String.fromCharCode(curCharCode));
+  }
+  return resultStr.join("");
+}
 // ArrayBuffer转16进度字符串示例
 function ab2hex(buffer) {
   var hexArr = Array.prototype.map.call(
@@ -16,7 +32,10 @@ function ab2hex(buffer) {
       return ('00' + bit.toString(16)).slice(-2)
     }
   )
-  return hexArr.join('');
+  //16进制ASCII码转换成字符
+  let str=hexArr.join('');
+  let result=hexCharCodeToStr(str);
+  return result;
 }
 
 Component({
@@ -181,7 +200,7 @@ Component({
           console.error('getBLEDeviceCharacteristics', res)
         }
       })
-      // 操作之前先监听，保证第一时间获取数据
+      // on之前先监听，保证第一时间获取数据
       wx.onBLECharacteristicValueChange((characteristic) => {
         const idx = inArray(this.data.chs, 'uuid', characteristic.characteristicId)
         const data = {}

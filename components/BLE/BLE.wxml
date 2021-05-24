@@ -38,11 +38,4 @@
         <view>特性UUID: {{item.uuid}}</view>
         <view>特性值: {{item.value}}</view>
     </view>
-    <view>
-        <view wx:for="{{chs}}" wx:key="item.uuid" class="chs_item">
-            <view>
-                uuid:{{item.uuid}} value:{{item.value}}
-            </view>
-        </view>
-    </view>
 </view>
