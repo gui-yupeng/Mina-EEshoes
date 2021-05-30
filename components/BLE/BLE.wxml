@@ -38,4 +38,8 @@
         <view>特性UUID: {{item.uuid}}</view>
         <view>特性值: {{item.value}}</view>
     </view>
+    <view style="font-size: 12px; margin-top: 10px;">当前步数：{{current_status[0]}}</view>
+    <view style="font-size: 12px; margin-top: 10px;">当前走路步数：{{current_status[1]}}</view>
+    <view style="font-size: 12px; margin-top: 10px;">当前跑步步数：{{current_status[2]}}</view>   
+    <view style="font-size: 12px; margin-top: 10px;">当前状态：{{(current_status[3]==="1"?"人摔倒了":"人安全着")}}</view> 
 </view>

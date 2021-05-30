@@ -10,8 +10,16 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        
       }
     })
+    //订阅消息权限
+    wx.requestSubscribeMessage({
+      tmplIds:"ugKAFLpJbmTrwnRX3K_XNYlqOx77SsQJNwdcgdn4p2k",
+      success:(res)=>{
+        console.log("订阅消息权限开启");
+      }
+    });
   },
   globalData: {
     userInfo: null

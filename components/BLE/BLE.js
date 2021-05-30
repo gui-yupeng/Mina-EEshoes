@@ -34,8 +34,9 @@ function ab2hex(buffer) {
   )
   //16进制ASCII码转换成字符
   let str=hexArr.join('');
-  let result=hexCharCodeToStr(str);
-  return result;
+  //res1字符串
+  let res1=hexCharCodeToStr(str);
+  return res1;
 }
 
 Component({
@@ -51,6 +52,8 @@ Component({
     connected: false,
     //数据{characteristicId，value}
     chs: [],
+    //当前状态,Steps:16,walk:8,run:8,F:0
+    current_status: []
   },
 
   methods: {
@@ -215,7 +218,15 @@ Component({
             value: ab2hex(characteristic.value)
           }
         }
-        this.setData(data)
+        let current=ab2hex(characteristic.value)
+        //Steps:16,walk:8,run:8,F:0
+        current=current.split("#");
+
+        this.setData(data);
+        this.setData({
+          current_status:current
+        })
+        //this.setData(current_status)
       })
     },
     //发送数据
