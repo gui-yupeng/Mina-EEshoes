@@ -30,16 +30,28 @@
     <view>
         <text>已连接到 {{name}}</text>
         <view class="operation">
-        <button wx:if="{{canWrite}}" size="mini" bindtap="writeBLECharacteristicValue">写数据</button>
+        <!-- <button wx:if="{{canWrite}}" size="mini" bindtap="writeBLECharacteristicValue">写数据</button>
+        -->
         <button size="mini" bindtap="closeBLEConnection">断开连接</button>
         </view>
     </view>
-    <view wx:for="{{chs}}" wx:key="index" style="font-size: 12px; margin-top: 10px;">
+    <!--<view wx:for="{{chs}}" wx:key="index" style="font-size: 12px; margin-top: 10px;">
         <view>特性UUID: {{item.uuid}}</view>
         <view>特性值: {{item.value}}</view>
-    </view>
+    </view>-->
+    <view style="font-size: 12px; margin-top: 10px;">Connected：{{connected}}</view>
     <view style="font-size: 12px; margin-top: 10px;">当前步数：{{current_status[0]}}</view>
     <view style="font-size: 12px; margin-top: 10px;">当前走路步数：{{current_status[1]}}</view>
     <view style="font-size: 12px; margin-top: 10px;">当前跑步步数：{{current_status[2]}}</view>   
     <view style="font-size: 12px; margin-top: 10px;">当前状态：{{(current_status[3]==="1"?"人摔倒了":"人安全着")}}</view> 
+    <van-popup 
+        show="{{current_status[3]==='1'}}" 
+    >
+    <view>
+        检测到老人体态异常
+    </view>
+    <view>
+        您的家人可能有危险
+    </view>
+    </van-popup>
 </view>

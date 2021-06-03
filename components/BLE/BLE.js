@@ -59,9 +59,32 @@ Component({
   methods: {
     //微信提供接口，打开蓝牙适配器，异步操作
     openBluetoothAdapter : function (){
+      var that=this;
       wx.openBluetoothAdapter({
         success: (res) => {
           console.log('openBluetoothAdapter success', res)
+          //连接状态监听
+          wx.onBLEConnectionStateChange(function(res) {
+            console.log(`device ${res.deviceId} state has changed, connected: ${res.connected}`)
+            that.setData({
+               connected: res.connected
+            })
+            if(!res.connected){
+              let deviceId="63:77:94:59:08:6C";
+              wx.createBLEConnection({
+                deviceId,
+                success: (res) => {
+                  //添加数据
+                  // this.setData({
+                  //   connected: true,
+                  //   name,
+                  //   deviceId,
+                  // })
+                  that.getBLEDeviceServices(deviceId)
+                }
+              })
+            }
+          })
           this.startBluetoothDevicesDiscovery()
         },
         fail: (res) => {
@@ -125,6 +148,7 @@ Component({
     //点击一个设备,连接设备
     createBLEConnection:function(e){
       const ds = e.currentTarget.dataset
+      console.log(ds)
       const deviceId = ds.deviceId
       const name = ds.name
     //官方接口，连接低功耗蓝牙设备

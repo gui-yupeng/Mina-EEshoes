@@ -1,0 +1,23 @@
+{
+  "name": "ee-shoes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "@vant/weapp": "^1.6.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gui-yupeng/Mina-EEshoes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gui-yupeng/Mina-EEshoes/issues"
+  },
+  "homepage": "https://github.com/gui-yupeng/Mina-EEshoes#readme"
+}
